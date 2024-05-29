@@ -1,0 +1,8 @@
+/.env*
+/frontend/node_modules
+/frontend/.next
+/frontend/.env
+
+/server/dist
+/server/node_modules
+/server/.env
