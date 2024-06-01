@@ -51,6 +51,8 @@ export class Game {
             if (this.gameStatus != "progress") return socket.emit("error", "Game not started")
             const splitPara = this.para.split(" ")
             const splitTyped=typed.split(" ")
+            console.log({splitTyped,splitPara});
+            
 
             let score=0;
             for(let i=0;i<splitTyped.length;i++){
