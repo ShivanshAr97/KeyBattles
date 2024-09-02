@@ -8,13 +8,22 @@ const config: Config = {
   ],
   theme: {
     extend: {
-      backgroundImage: {
-        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-        "gradient-conic":
-          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+      animation: {
+        blink: 'blink 1s ease-in-out infinite',
+      },
+      keyframes: {
+        blink: {
+          '0%, 100%': { opacity: '1' },
+          '50%': { opacity: '0' },
+        }
+      },
+        backgroundImage: {
+          "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
+          "gradient-conic":
+            "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+        },
       },
     },
-  },
-  plugins: [],
-};
-export default config;
+    plugins: [],
+  };
+  export default config;

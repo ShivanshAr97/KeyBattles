@@ -9,16 +9,19 @@ export class Game {
     io: Server
     gameHost: string
     para: string
+    time:number
 
-    constructor(id: string, io: Server, host: string) {
+    constructor(id: string, io: Server, host: string,duration:number=10000) {
         this.gameId = id
         this.players = []
         this.io = io
         this.gameHost = host
         this.gameStatus = "not-started"
         this.para = ""
+        this.time=duration
     }
 
+    
     handleSockets(socket: Socket) {
         socket.on("start-game", () => {
             if (this.gameStatus === "progress") {
@@ -28,6 +31,7 @@ export class Game {
             if (this.gameHost != socket.id) {
                 return socket.emit("error", "You are not the host")
             }
+
             for (const player of this.players) {
                 player.score = 0
             }
@@ -44,7 +48,7 @@ export class Game {
                 this.gameStatus = "finished"
                 this.io.to(this.gameId).emit("game-finished")
                 this.io.to(this.gameId).emit("players", this.players)
-            }, 65000);
+            }, this.time*10);
         })
 
         socket.on("player-typed", (typed: string) => {
